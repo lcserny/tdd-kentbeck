@@ -17,6 +17,21 @@ func TestMultiplication(t *testing.T) {
 	if fifteenDollars != want {
 		t.Errorf("amounts not equal, got %d, want %d", fifteenDollars, want)
 	}
+
+	fiveFrancs := NewFranc(5)
+	tenFrancs := fiveFrancs.Times(2)
+
+	wantFranc := NewFranc(10)
+	if tenFrancs != wantFranc {
+		t.Errorf("amounts not equal, got %d, want %d", tenFrancs, wantFranc)
+	}
+
+	fifteenFrancs := fiveFrancs.Times(3)
+
+	wantFranc = NewFranc(15)
+	if fifteenFrancs != wantFranc {
+		t.Errorf("amounts not equal, got %d, want %d", fifteenFrancs, wantFranc)
+	}
 }
 
 func TestEquality(t *testing.T) {
@@ -32,5 +47,19 @@ func TestEquality(t *testing.T) {
 
 	if sixDollar == sevenDollar {
 		t.Errorf("different dollar bills should not be equal, first %d, second %d", sixDollar, sevenDollar)
+	}
+
+	fiveFranc := NewFranc(5)
+	newFiveFranc := NewFranc(5)
+
+	if fiveFranc != newFiveFranc {
+		t.Errorf("two 5 Franc bills are not equal, first %d, second %d", fiveFranc, newFiveFranc)
+	}
+
+	sixFranc := NewFranc(6)
+	sevenFranc := NewFranc(7)
+
+	if sixFranc == sevenFranc {
+		t.Errorf("different Franc bills should not be equal, first %d, second %d", sixFranc, sevenFranc)
 	}
 }

@@ -6,3 +6,10 @@ data class Dollar(val amount: Int) {
         return Dollar(amount * multiplier)
     }
 }
+
+data class Franc(val amount: Int) {
+
+    fun times(multiplier: Int): Franc {
+        return Franc(amount * multiplier)
+    }
+}
