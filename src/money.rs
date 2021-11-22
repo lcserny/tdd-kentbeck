@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use super::money::*;
+    use super::*;
 
     #[test]
     fn multiplying_dollars_is_possible() {
@@ -49,43 +49,40 @@ mod tests {
     }
 }
 
-pub mod money {
-    pub trait MoneyOperations {
-        fn times(&self, multiplier: u32) -> Self;
-    }
+pub trait MoneyOperations {
+    fn times(&self, multiplier: u32) -> Self;
+}
 
-    #[derive(PartialEq, Debug)]
-    pub struct Dollar {
-        pub amount: u32,
-    }
+#[derive(PartialEq, Debug)]
+pub struct Dollar {
+    pub amount: u32,
+}
 
-    impl Dollar {
-        pub fn new(amount: u32) -> Dollar {
-            Dollar { amount }
-        }
-    }
-
-    impl MoneyOperations for Dollar {
-        fn times(&self, multiplier: u32) -> Dollar {
-            Dollar { amount: self.amount * multiplier }
-        }
-    }
-
-    #[derive(PartialEq, Debug)]
-    pub struct Franc {
-        pub amount: u32,
-    }
-
-    impl Franc {
-        pub fn new(amount: u32) -> Franc {
-            Franc { amount }
-        }
-    }
-
-    impl MoneyOperations for Franc {
-        fn times(&self, multiplier: u32) -> Franc {
-            Franc { amount: self.amount * multiplier }
-        }
+impl Dollar {
+    pub fn new(amount: u32) -> Dollar {
+        Dollar { amount }
     }
 }
 
+impl MoneyOperations for Dollar {
+    fn times(&self, multiplier: u32) -> Dollar {
+        Dollar { amount: self.amount * multiplier }
+    }
+}
+
+#[derive(PartialEq, Debug)]
+pub struct Franc {
+    pub amount: u32,
+}
+
+impl Franc {
+    pub fn new(amount: u32) -> Franc {
+        Franc { amount }
+    }
+}
+
+impl MoneyOperations for Franc {
+    fn times(&self, multiplier: u32) -> Franc {
+        Franc { amount: self.amount * multiplier }
+    }
+}
